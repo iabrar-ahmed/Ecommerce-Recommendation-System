@@ -10,7 +10,7 @@ Main Flask application. Routes:
 
 Run:
     python app.py
-Then visit http://0.0.0.0:5000
+Then visit http://127.0.0.1:5000
 """
 
 from flask import Flask, render_template, request, abort
