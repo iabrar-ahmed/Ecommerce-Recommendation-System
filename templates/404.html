@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Not Found — ShopSmart{% endblock %}
+
+{% block content %}
+    <h1>404</h1>
+    <p>That product doesn't exist. <a href="{{ url_for('home') }}">Go back home</a>.</p>
+{% endblock %}

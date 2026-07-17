@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}ShopSmart — Home{% endblock %}
+
+{% block content %}
+    <nav class="category-bar">
+        {% for cat in categories %}
+            <a href="{{ url_for('category_view', category_name=cat) }}">{{ cat }}</a>
+        {% endfor %}
+    </nav>
+
+    <h1>Featured Products</h1>
+    <div class="product-grid">
+        {% for p in products %}
+            <a class="product-card" href="{{ url_for('product_detail', product_id=p.product_id) }}">
+                <div class="product-card-body">
+                    <h3>{{ p.name }}</h3>
+                    <p class="muted">{{ p.category }} / {{ p.subcategory }}</p>
+                    <p class="price">{{ p.price|inr }}</p>
+                    <p class="rating">⭐ {{ p.rating }} ({{ p.num_reviews }} reviews)</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

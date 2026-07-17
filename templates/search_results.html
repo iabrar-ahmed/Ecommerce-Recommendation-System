@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }} — ShopSmart{% endblock %}
+
+{% block content %}
+    <h1>{{ heading }}</h1>
+
+    {% if products %}
+        <p class="muted">{{ products|length }} results</p>
+        <div class="product-grid">
+            {% for p in products %}
+                <a class="product-card" href="{{ url_for('product_detail', product_id=p.product_id) }}">
+                    <div class="product-card-body">
+                        <h3>{{ p.name }}</h3>
+                        <p class="muted">{{ p.category }} / {{ p.subcategory }}</p>
+                        <p class="price">{{ p.price|inr }}</p>
+                        <p class="rating">⭐ {{ p.rating }} ({{ p.num_reviews }} reviews)</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">No products found.</p>
+    {% endif %}
+
+    {% if related %}
+        <section class="related-section">
+            <h2>Related to "{{ matched_name }}"</h2>
+            <div class="product-grid">
+                {% for item in related %}
+                    <a class="product-card" href="{{ url_for('product_detail', product_id=item.product_id) }}">
+                        <div class="product-card-body">
+                            <h3>{{ item.name }}</h3>
+                            <p class="muted">{{ item.category }} / {{ item.subcategory }}</p>
+                            <p class="price">{{ item.price|inr }}</p>
+                            <p class="rating">⭐ {{ item.rating }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
